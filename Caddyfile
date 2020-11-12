@@ -1,0 +1,6 @@
+http://localhost
+
+route /api/v2/* {
+	uri strip_prefix /api/v2
+	reverse_proxy prism_1:4010
+}

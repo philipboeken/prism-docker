@@ -1,0 +1,15 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8010:80'
+    depends_on:
+      - prism_1
+  prism_1:
+    image: stoplight/prism:4
+    command: >
+      mock -p 4010 -d --host 0.0.0.0
+      https://git.adsysco.nl/api/v4/projects/software%2Fregiweb/repository/files/public%2Fdocs%2Freference%2Fregiapi.v2.resolved.yaml/raw?ref=feature-locaties-api&private_token=v3b7CKfMPmbMGeJnyogv
